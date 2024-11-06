@@ -16,3 +16,79 @@ body {
 	display: grid;
 	place-content: center;
 }
+
+.container {
+	position: relative;
+
+	.health-bar-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1rem;
+
+		.timer {
+			width: 10%;
+			height: 5rem;
+			background-color: yellow;
+			text-align: center;
+			line-height: 5rem;
+			font-size: 2rem;
+		}
+
+		.health-bar-container-secondary {
+			position: relative;
+			width: 45%;
+			height: 2rem;
+
+			.health-bar {
+				width: 100%;
+				height: 2rem;
+				background-color: blue;
+
+				&.player,
+				&.enemy {
+					position: absolute;
+					top: 0;
+					background-color: red;
+					z-index: 2;
+				}
+
+				&.player {
+					left: 0;
+				}
+
+				&.enemy {
+					right: 0;
+				}
+			}
+		}
+	}
+
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 2;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 3rem;
+
+		#display-text {
+			display: none;
+			color: white;
+			height: 10rem;
+			width: 20rem;
+			background: lightcoral;
+			text-align: center;
+			line-height: 10rem;
+			border-radius: 2rem;
+		}
+	}
+}

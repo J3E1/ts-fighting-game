@@ -10,7 +10,24 @@
 </head>
 
 <body>
-  <canvas></canvas>
+  <div class="container">
+    <div class="health-bar-container">
+      <div class="health-bar-container-secondary">
+        <div class="health-bar"></div>
+        <div id="player-health" class="health-bar player"></div>
+      </div>
+      <div class="timer">10</div>
+      <div class="health-bar-container-secondary">
+        <div class="health-bar"></div>
+        <div id="enemy-health" class="health-bar enemy"></div>
+      </div>
+    </div>
+    <!-- Overlay for the winner -->
+    <div class="overlay">
+      <div id="display-text"></div>
+    </div>
+    <canvas></canvas>
+  </div>
   <script type="module" src="/src/main.ts"></script>
 </body>
 
