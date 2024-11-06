@@ -18,7 +18,7 @@ export const background = new Sprite({
 		x: 0,
 		y: 0,
 	},
-	imageSrc: 'public/background.png',
+	imageSrc: '/background.png',
 });
 
 export const shop = new Sprite({
@@ -26,7 +26,7 @@ export const shop = new Sprite({
 		x: 630,
 		y: 128,
 	},
-	imageSrc: 'public/shop.png',
+	imageSrc: '/shop.png',
 	scale: 2.75,
 	framesMax: 6,
 });
@@ -44,7 +44,7 @@ export const player = new Player({
 		x: 0,
 		y: 0,
 	},
-	imageSrc: 'public/Rigrider/Idle.png',
+	imageSrc: '/Rigrider/Idle.png',
 	framesMax: 11,
 	scale: 2.5,
 });
@@ -62,7 +62,7 @@ export const enemy = new Player({
 		x: -50,
 		y: 0,
 	},
-	imageSrc: 'public/Sophi/Idle.png',
+	imageSrc: '/Sophi/Idle.png',
 	framesMax: 11,
 	scale: 2.5,
 });
