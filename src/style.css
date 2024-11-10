@@ -1,12 +1,14 @@
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
-
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: 'Press Start 2P', system-ui;
+	font-style: normal;
 }
 
 body {
@@ -31,38 +33,42 @@ body {
 		padding: 1rem;
 
 		.timer {
+			color: #fff;
 			width: 10%;
-			height: 5rem;
-			background-color: yellow;
+			height: 3rem;
+			background-color: #000;
 			text-align: center;
-			line-height: 5rem;
-			font-size: 2rem;
+			line-height: 2.75rem;
+			font-size: 1rem;
+			border: 4px white solid;
 		}
 
 		.health-bar-container-secondary {
 			position: relative;
+			box-sizing: border-box;
 			width: 45%;
-			height: 2rem;
+			border: 4px white solid;
+
+			&:has(.player) {
+				border-right: 0px;
+			}
+
+			&:has(.enemy) {
+				border-left: 0px;
+			}
 
 			.health-bar {
 				width: 100%;
-				height: 2rem;
-				background-color: blue;
+				height: 1.5rem;
+				background-color: #dc2626;
+				transition: width 0.5s ease-in-out;
 
 				&.player,
 				&.enemy {
 					position: absolute;
 					top: 0;
-					background-color: red;
+					background-color: #a5b4fc;
 					z-index: 2;
-				}
-
-				&.player {
-					left: 0;
-				}
-
-				&.enemy {
-					right: 0;
 				}
 			}
 		}
@@ -78,17 +84,53 @@ body {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-size: 3rem;
 
-		#display-text {
+		.popup {
 			display: none;
 			color: white;
-			height: 10rem;
-			width: 20rem;
-			background: lightcoral;
+			height: 8rem;
+			width: 18rem;
+			background: rgba(220, 38, 38, 0.8);
 			text-align: center;
-			line-height: 10rem;
-			border-radius: 2rem;
+			line-height: 8rem;
+			border: 4px white solid;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+			font-size: 1rem;
+
+			#replay-btn {
+				cursor: pointer;
+			}
+		}
+
+		.display-player-controls {
+			display: none;
+			color: white;
+			width: auto;
+			background: rgba(220, 38, 38, 0.8);
+			text-align: center;
+			border: 4px white solid;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+			font-size: 1rem;
+			line-height: 1.5rem;
+			z-index: 10;
+			.controls {
+				display: flex;
+				display: flex;
+				justify-content: space-between;
+				gap: 1rem;
+
+				li {
+					list-style: none;
+				}
+			}
+			button {
+				cursor: pointer;
+				padding: 0.5rem 1rem;
+				background-color: transparent;
+				color: white;
+				border: 4px white solid;
+				margin-block: 1rem;
+			}
 		}
 	}
 }

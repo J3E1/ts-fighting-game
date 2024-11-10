@@ -3,7 +3,9 @@ import { Player, Sprite } from './classes';
 export const canvas = document.querySelector<HTMLCanvasElement>('canvas')!;
 export const playerHealthBar = document.querySelector<HTMLDivElement>('#player-health')!;
 export const enemyHealthBar = document.querySelector<HTMLDivElement>('#enemy-health')!;
+export const popupDiv = document.querySelector<HTMLDivElement>('.popup')!;
 export const displayTextDiv = document.querySelector<HTMLDivElement>('#display-text')!;
+export const replayBtn = document.querySelector<HTMLDivElement>('#replay-btn')!;
 export const timerDiv = document.querySelector<HTMLDivElement>('.timer')!;
 
 export const ctx = canvas.getContext('2d')!;
@@ -41,7 +43,7 @@ export const shop = new Sprite({
 
 export const player = new Player({
 	position: {
-		x: 10,
+		x: 40,
 		y: 0,
 	},
 	velocity: {
@@ -70,7 +72,7 @@ export const player = new Player({
 		},
 		death: {
 			imageSrc: '/Rigrider/Death.png',
-			framesMax: 11,
+			framesMax: 7,
 		},
 		fall: {
 			imageSrc: '/Rigrider/Fall.png',
@@ -134,7 +136,7 @@ export const enemy = new Player({
 		},
 		idle: {
 			imageSrc: '/kenji/Idle.png',
-			framesMax: 7,
+			framesMax: 4,
 		},
 		jump: {
 			imageSrc: '/kenji/Jump.png',

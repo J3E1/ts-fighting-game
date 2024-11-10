@@ -9,6 +9,7 @@ import {
 	keys,
 	player,
 	playerHealthBar,
+	popupDiv,
 	shop,
 	timerDiv,
 } from './constants';
@@ -23,6 +24,10 @@ export const animate = () => {
 
 	background.draw();
 	shop.update();
+
+	// Light overlay behind player
+	ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 	player.update();
 	enemy.update();
@@ -56,7 +61,7 @@ export const animate = () => {
 
 	// enemy movement
 	if (keys.ArrowLeft.pressed && enemy.lastKeyPressed === 'ArrowLeft') {
-		enemy.velocity.x = -5;
+		enemy.velocity.x = -10;
 		enemy.switchSprite('run');
 		if (enemy.position.x + enemy.velocity.x === 0) {
 			enemy.velocity.x = 0;
@@ -64,7 +69,7 @@ export const animate = () => {
 	} else if (keys.ArrowRight.pressed && enemy.lastKeyPressed === 'ArrowRight') {
 		enemy.image! = enemy.sprites?.run.image!;
 		enemy.framesMax = enemy.sprites?.run.framesMax!;
-		enemy.velocity.x = 5;
+		enemy.velocity.x = 10;
 		enemy.switchSprite('run');
 		if (enemy.position.x + enemy.width + enemy.velocity.x >= canvas.width) {
 			enemy.velocity.x = 0;
@@ -87,24 +92,32 @@ export const animate = () => {
 		player.isAttacking &&
 		player.framesCurrent === 4
 	) {
-		enemy.health -= 10;
+		enemy.takeHit();
 		player.isAttacking = false;
 		enemyHealthBar.style.width = `${enemy.health}%`;
 	}
-	console.log('🚀 ~ file: utils.ts:94 ~ animate ~ framesCurrent:', player.framesCurrent);
 
-	enemy.isAttacking && console.log(player.position.x + player.width, enemy.attackRow.position.x);
+	// if player misses
+	if (player.isAttacking && player.framesCurrent === 4) {
+		player.isAttacking = false;
+	}
+
 	if (
 		player.position.y + player.height >= enemy.attackRow.position.y &&
 		player.position.y <= enemy.attackRow.position.y + enemy.attackRow.height! &&
-		player.position.x + player.width >= enemy.attackRow.position.x &&
+		// 50 added to account for the rage of enemy attack
+		player.position.x + player.width + 50 >= enemy.attackRow.position.x &&
 		player.position.x <= enemy.attackRow.position.x + enemy.attackRow.width! &&
 		enemy.isAttacking &&
 		enemy.framesCurrent === 2
 	) {
-		player.health -= 10;
+		player.takeHit();
 		enemy.isAttacking = false;
 		playerHealthBar.style.width = `${player.health}%`;
+	}
+
+	if (enemy.isAttacking && enemy.framesCurrent === 2) {
+		enemy.isAttacking = false;
 	}
 
 	if (player.health <= 0 || enemy.health <= 0) {
@@ -126,26 +139,49 @@ export const determineWinner = ({
 	timerId?: number;
 }) => {
 	timerId && clearInterval(timerId);
-	displayTextDiv.style.display = 'block';
+	popupDiv.style.display = 'block';
 	if (player1.health === player2.health) {
 		displayTextDiv.textContent = 'Tie';
 	} else if (player1.health > player2.health) {
 		displayTextDiv.textContent = 'Player 1 wins';
+		enemy.switchSprite('death');
 	} else {
 		displayTextDiv.textContent = 'Player 2 wins';
+		player.switchSprite('death');
 	}
 };
 
-const intervalId = setInterval(() => {
-	if (timer > 0) {
-		timer--;
-		timerDiv.innerText = timer.toString();
-	}
-	if (timer === 0) {
-		determineWinner({
-			player1: player,
-			player2: enemy,
-			timerId: intervalId,
+let intervalId: number | undefined;
+
+const startTimer = () => {
+	intervalId = setInterval(() => {
+		if (timer > 0) {
+			timer--;
+			timerDiv.innerText = timer.toString();
+		}
+		if (timer === 0) {
+			determineWinner({
+				player1: player,
+				player2: enemy,
+				timerId: intervalId,
+			});
+		}
+	}, 1000);
+};
+
+export const showPlayerControllers = () => {
+	const localStorageKey = 'playerControlsShown';
+	const okButton = document.querySelector<HTMLButtonElement>('#ok-button')!;
+	const playerControls = document.querySelector<HTMLDivElement>('.display-player-controls')!;
+
+	if (!localStorage.getItem(localStorageKey)) {
+		playerControls.style.display = 'block';
+		okButton.addEventListener('click', () => {
+			localStorage.setItem(localStorageKey, 'true');
+			playerControls.style.display = 'none';
+			startTimer();
 		});
+	} else {
+		startTimer();
 	}
-}, 1000);
+};
