@@ -19,6 +19,10 @@ export const background = new Sprite({
 		y: 0,
 	},
 	imageSrc: '/background.png',
+	offset: {
+		x: 0,
+		y: 0,
+	},
 });
 
 export const shop = new Sprite({
@@ -29,6 +33,10 @@ export const shop = new Sprite({
 	imageSrc: '/shop.png',
 	scale: 2.75,
 	framesMax: 6,
+	offset: {
+		x: 0,
+		y: 0,
+	},
 });
 
 export const player = new Player({
@@ -41,12 +49,50 @@ export const player = new Player({
 		y: 0,
 	},
 	offset: {
-		x: 0,
-		y: 0,
+		x: -130,
+		y: -153,
 	},
 	imageSrc: '/Rigrider/Idle.png',
-	framesMax: 11,
-	scale: 2.5,
+	framesMax: 10,
+	scale: 3,
+	attackRow: {
+		offset: {
+			x: 100,
+			y: 50,
+		},
+		height: 40,
+		width: 160,
+	},
+	sprites: {
+		attack: {
+			imageSrc: '/Rigrider/Attack1.png',
+			framesMax: 7,
+		},
+		death: {
+			imageSrc: '/Rigrider/Death.png',
+			framesMax: 11,
+		},
+		fall: {
+			imageSrc: '/Rigrider/Fall.png',
+			framesMax: 3,
+		},
+		idle: {
+			imageSrc: '/Rigrider/Idle.png',
+			framesMax: 10,
+		},
+		jump: {
+			imageSrc: '/Rigrider/Jump.png',
+			framesMax: 3,
+		},
+		run: {
+			imageSrc: '/Rigrider/Run.png',
+			framesMax: 8,
+		},
+		takeHit: {
+			imageSrc: '/Rigrider/Take hit.png',
+			framesMax: 3,
+		},
+	},
 });
 
 export const enemy = new Player({
@@ -59,12 +105,50 @@ export const enemy = new Player({
 		y: 0,
 	},
 	offset: {
-		x: -50,
-		y: 0,
+		x: -400,
+		y: -183,
 	},
-	imageSrc: '/Sophi/Idle.png',
-	framesMax: 11,
-	scale: 2.5,
+	imageSrc: '/kenji/Idle.png',
+	framesMax: 4,
+	scale: 2.6,
+	attackRow: {
+		offset: {
+			x: -350,
+			y: 50,
+		},
+		height: 40,
+		width: 190,
+	},
+	sprites: {
+		attack: {
+			imageSrc: '/kenji/Attack1.png',
+			framesMax: 4,
+		},
+		death: {
+			imageSrc: '/kenji/Death.png',
+			framesMax: 7,
+		},
+		fall: {
+			imageSrc: '/kenji/Fall.png',
+			framesMax: 2,
+		},
+		idle: {
+			imageSrc: '/kenji/Idle.png',
+			framesMax: 7,
+		},
+		jump: {
+			imageSrc: '/kenji/Jump.png',
+			framesMax: 2,
+		},
+		run: {
+			imageSrc: '/kenji/Run.png',
+			framesMax: 8,
+		},
+		takeHit: {
+			imageSrc: '/kenji/Take hit.png',
+			framesMax: 3,
+		},
+	},
 });
 
 export const keys = {
