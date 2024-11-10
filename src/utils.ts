@@ -142,6 +142,8 @@ export const determineWinner = ({
 	popupDiv.style.display = 'block';
 	if (player1.health === player2.health) {
 		displayTextDiv.textContent = 'Tie';
+		enemy.switchSprite('death');
+		player.switchSprite('death');
 	} else if (player1.health > player2.health) {
 		displayTextDiv.textContent = 'Player 1 wins';
 		enemy.switchSprite('death');
