@@ -3,11 +3,14 @@
 
 <head>
   <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="/ts-fighting-game/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite + TS</title>
-  <script type="module" crossorigin src="/ts-fighting-game/assets/index-BdAJbBAF.js"></script>
-  <link rel="stylesheet" crossorigin href="/ts-fighting-game/assets/index-Bgm4Ewgv.css">
+  <script type="module" crossorigin src="/ts-fighting-game/assets/index-BQDyCkEa.js"></script>
+  <link rel="stylesheet" crossorigin href="/ts-fighting-game/assets/index-DHU2YS8E.css">
 </head>
 
 <body>
@@ -17,7 +20,7 @@
         <div class="health-bar"></div>
         <div id="player-health" class="health-bar player"></div>
       </div>
-      <div class="timer">10</div>
+      <div class="timer">100</div>
       <div class="health-bar-container-secondary">
         <div class="health-bar"></div>
         <div id="enemy-health" class="health-bar enemy"></div>
@@ -25,7 +28,38 @@
     </div>
     <!-- Overlay for the winner -->
     <div class="overlay">
-      <div id="display-text"></div>
+      <div class="display-player-controls">
+        <div class="controls">
+          <div>
+            <p>Player 1:</p>
+            <ul>
+              <li>Move left: A</li>
+              <li>Move right: D</li>
+              <li>Jump: W</li>
+              <li>Attack: S</li>
+            </ul>
+          </div>
+          <div>
+            <p>Player 2:</p>
+            <ul>
+              <li>Move left: ArrowLeft</li>
+              <li>Move right: ArrowRight</li>
+              <li>Jump: ArrowUp</li>
+              <li>Attack: ArrowDown</li>
+            </ul>
+          </div>
+        </div>
+        <button id="ok-button">OK</button>
+      </div>
+      <div class="popup">
+        <span id="display-text"></span>
+        <svg id="replay-btn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-rotate-cw">
+          <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
+          <path d="M21 3v5h-5" />
+        </svg>
+      </div>
     </div>
     <canvas></canvas>
   </div>
