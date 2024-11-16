@@ -70,6 +70,9 @@ body {
 					background-color: #a5b4fc;
 					z-index: 2;
 				}
+				&.enemy {
+					right: 0;
+				}
 			}
 		}
 	}
