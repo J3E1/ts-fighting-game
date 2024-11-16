@@ -2,6 +2,8 @@
 
 A simple 1v1 fighting game built with TypeScript and the HTML5 canvas element.
 
+![image](https://github.com/user-attachments/assets/5ae5f5d4-b828-4a16-9cd0-b00fee945147)
+
 ## Features
 
 - Two playable characters
